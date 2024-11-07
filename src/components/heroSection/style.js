@@ -19,6 +19,7 @@ const Style = styled.div`
       right: 30%;
       transition: transform 3s ease-in-out;
       opacity: .7;
+      mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     }
 
     .slideHero {
@@ -41,29 +42,24 @@ const Style = styled.div`
         .rightSide {
           width: 48%;
           overflow: hidden;
-          // display: flex;
-          //   justify-content: center;
-          //   align-items: center;
+
             direction:ltr;
-          transition: transform 1s ease;
+          
           .tvAiring {
             width: 100%;
             overflow: hidden;
-            // display: flex;
-            // gap: 10px;
+
                 
             
 
             .slide {
 
-                    width: 200px;
-                    height: 300px;
+                    width: 114px;
+                    height: 214px;
                     border-radius: 10px;
                     overflow: hidden;
-                    // display: flex;
-                    // justify-content: center;
-                    // align-items: center;
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                    transition: transform 4s ease-in-out;
 
               .imageSlide {
                     width: 100%;

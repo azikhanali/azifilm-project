@@ -76,7 +76,7 @@ export default function HeroSection() {
                 <div className="slideHero">
                     <Flex className="container" wrap space-between  >
                             <div className="rightSide" >
-                                <Flex className="tvAiring"  flex-end gap="small" >
+                                <Flex className="tvAiring"  flex-end gap="large" >
                                     {renderAirToday()}
                                 </Flex>
 
