@@ -35,9 +35,34 @@ export default function DataSeries(){
             )
         })
     }
-    const[stars , setStars] = useState()
-    
-   
+    const[stars , setStars] = useState({cast:[]})
+    useEffect(function(){
+        api.get(`/tv/${id}/credits?api_key=${apiKey}`)
+            .then(function(response){
+                setStars(response.data)
+            })
+            .catch()
+    } , [dataSeries]);
+    function renderStars(){
+        return stars.cast.slice(0 , 3).map(function({name , id}){
+            return(
+                <Link to="/" className="starData" key={id}>
+                    <h6>{name}</h6>
+                </Link>
+            )
+        })
+    };
+    const overview = dataSeries.overview; 
+    function renderOverview(){
+        if(overview){
+           return (
+            <p className="overview">
+                {overview}
+            </p>
+           )
+        }
+        else{ return ("")}
+    };
     return(
         <Style>
             <LayOut>
@@ -47,7 +72,7 @@ export default function DataSeries(){
                             <img className="bgHero"
                                 src={`https://image.tmdb.org/t/p/w500${dataSeries.backdrop_path}`}
                             />
-                            <Flex className="description" wrap gap="middle" align="center">
+                            <Flex className="description" wrap justify="flex-start" gap="middle" align="center">
                                 <img className="poster" 
                                     src={`https://image.tmdb.org/t/p/w500${dataSeries.poster_path}`}
                                 />
@@ -56,13 +81,10 @@ export default function DataSeries(){
                                     <Flex className="genres" wrap gap="middle">
                                         ژانر:{renderGenres()}
                                     </Flex>
-                                    <p className="overView">
-                                       {dataSeries.seasons[1].overview}
-                                    </p>
-                                    <Flex className="stars" wrap gap="middle">
+                                    {renderOverview()}
+                                    <Flex className="stars" wrap gap="middle" align="center">
                                         <StarOutlined style={{color:`${defaultTheme.colors.orange}`}} />
-
-
+                                        ستارگان:{renderStars()}
                                     </Flex>
                                 </div>
                             </Flex>

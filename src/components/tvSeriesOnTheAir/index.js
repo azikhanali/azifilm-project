@@ -29,7 +29,7 @@ export default function TvSeriesOTheAir() {
     }, []);
 
     function renderTvs() {
-        return tvSeries.results.slice(0, 8).map(({ backdrop_path, id , overview }, index) => {
+        return tvSeries.results.slice(0, 8).map(({ backdrop_path, id }, index) => {
             const seriesDetail = tvSeriesDetails[index]; 
 
             return (
@@ -61,7 +61,7 @@ export default function TvSeriesOTheAir() {
                 <div className="container">
                     <Flex className="title" justify="space-between">
                         <h4>سریال های در حال پخش</h4>
-                        <Link to="/">
+                        <Link to="/series">
                             <Flex gap="small">
                                 <h5>تمامی سریالها</h5>
                                 <LeftOutlined />

@@ -10,7 +10,7 @@ const defaultTheme = {
         black: "#000",
     },
     fontSize:{
-        normal: 14,
+        normal: 10,
         huge: 42,
     },
 
@@ -27,6 +27,7 @@ body{
     -moz-box-sizing: border-box;
     background-color: ${defaultTheme.colors.black};
     color:${defaultTheme.colors.white};
+    font-size:${defaultTheme.fontSize.normal};
     }
 a{
     text-decoration: none;

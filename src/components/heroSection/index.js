@@ -18,7 +18,7 @@ export default function HeroSection() {
                         setImageIndex(index => 
                             (index + 1) % 5 
                         );
-                        setTimeout(changeImages, 3000); 
+                        setTimeout(changeImages, 4000); 
                     };
                     changeImages(); 
                 }
@@ -33,59 +33,32 @@ export default function HeroSection() {
             );
         }
     }
-
-    // useEffect(function() {
-    //     // Function to update the carousel's currentIndex to loop infinitely
-    //     function updateCarousel() {
-    //       setCurrentIndex(index => 
-    //         (index + 1) % 5
-    //     );
-    
-    //       // Set timeout to call this function again after 3 seconds (adjustable)
-    //       setTimeout(updateCarousel, 3000);
-    //     }
-    
-    //     // Start the loop
-    //     if (airingToday.results.length > 0) {
-    //       const timeoutId = setTimeout(updateCarousel, 3000);
-    
-    //       // Cleanup on unmount
-    //       return function() {
-    //         clearTimeout(timeoutId);
-    //       };
-    //     }
-    //   }, [airingToday]);
     
       function renderAirToday() {
-        return airingToday.results.slice(0, 5).map(function({ poster_path }, index) {
-          return (
-            <Link key={index} className="slide" style={{ transform: `translateX(-${imageIndex * 240}px)` }}>
-              <img
-                className="imageSlide"
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-              />
-            </Link>
-          );
-        });
-      }
+            if (currentImage){
+                return (
+                    <Link to={`/dataSeries/${currentImage.id}`} className="slide" >
+                    <img
+                        className="imageSlide"
+                        src={`https://image.tmdb.org/t/p/w500${currentImage.poster_path}`}
+                    />
+                    </Link>
+                ); 
+            }   
+        }
 
     return (
         <Style>
             <div className="heroSection">
                 {renderCurrentImage()}
                 <div className="slideHero">
-                    <Flex className="container" wrap space-between  >
-                            <div className="rightSide" >
-                                <Flex className="tvAiring"  flex-end gap="large" >
-                                    {renderAirToday()}
-                                </Flex>
-
-                            </div>
-                            <div className="leftSide"></div>
-                            
+                    <Flex className="container" wrap justify="space-between" align="center"  >
+                        {renderAirToday()}
+                        <div className="leftSide"></div>        
                     </Flex>
                 </div>
             </div>
         </Style>
+
     );
 }

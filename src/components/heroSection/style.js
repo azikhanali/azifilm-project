@@ -28,51 +28,25 @@ const Style = styled.div`
       right: 0;
       top: 25%;
       width: 100%;
-
-      .container {
+      overflow: hidden;
+      .container{ 
         margin: 0 auto;
-        max-width: 1600px;
+        width: 1600px;
         padding: 0 15px;
         width: 95%;
-        display: flex;
-        gap: 20px;
-        
-        overflow: hidden;
-
-        .rightSide {
-          width: 48%;
+        .slide {
+          width: 220px;
+          height: 300px;
+          border-radius: 10px;
           overflow: hidden;
-
-            direction:ltr;
-          
-          .tvAiring {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+          transition: transform 3s ease-in-out;
+          .imageSlide {
             width: 100%;
-            overflow: hidden;
-
-                
-            
-
-            .slide {
-
-                    width: 114px;
-                    height: 214px;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-                    transition: transform 4s ease-in-out;
-
-              .imageSlide {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 10px;
-              }
-            }
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
           }
-        }
-
-        .leftSide {
-          width: 45%;
         }
       }
     }
