@@ -29,8 +29,8 @@ export default function TvSeriesOTheAir() {
     }, []);
 
     function renderTvs() {
-        return tvSeries.results.slice(0, 8).map(({ backdrop_path, id }, index) => {
-            const seriesDetail = tvSeriesDetails[index]; // Get the corresponding detail
+        return tvSeries.results.slice(0, 8).map(({ backdrop_path, id , overview }, index) => {
+            const seriesDetail = tvSeriesDetails[index]; 
 
             return (
                 <Col span={6} key={id}>
