@@ -87,6 +87,8 @@ const Style = styled.div`
                 }
             }  
             .movieData{
+                z-index:3000;
+                margin-top:20px;
                 .voteYear{
                     margin-top:3px;
                     .vote{
