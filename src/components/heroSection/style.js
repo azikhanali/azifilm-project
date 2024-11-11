@@ -71,6 +71,9 @@ const Style = styled.div`
       .bgHero {
         display: none;
       }
+      .heroImage{
+        display: none;
+        }
       .slider-container {
         top: 30%;
         width: 100%;
@@ -86,6 +89,7 @@ const Style = styled.div`
 
       .slider-container {
         width: 100%;
+        overflow: visible;
 
         .slick-slide {
           padding: 0 10px;
@@ -108,6 +112,7 @@ const Style = styled.div`
 
         .slide {
           max-width: 140px;
+          overflow: visible;
         }
       }
     }

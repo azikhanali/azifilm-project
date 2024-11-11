@@ -5,7 +5,7 @@ import api from "../../components/helpers/baseUrl";
 import { apiKey } from "../../components/helpers/token";
 import { Link } from "react-router-dom";
 import { Spin , Flex} from "antd";
-import { StarOutlined } from '@ant-design/icons';
+import { StarOutlined , LikeOutlined , DislikeOutlined} from '@ant-design/icons';
 import { defaultTheme } from "../../style/globalStyle";
 import Style from "./style";
 export default function DataSeries(){
@@ -72,6 +72,21 @@ export default function DataSeries(){
                             <img className="bgHero"
                                 src={`https://image.tmdb.org/t/p/w500${dataSeries.backdrop_path}`}
                             />
+                             <Flex className="name" align="center" justify="flex-start">
+                                <DislikeOutlined style={{marginLeft:"8px",marginBottom:"-5px"}}/>
+                                <LikeOutlined  />
+                                <img 
+                                    src="/images/tvlogo.png"
+                                    style={{width:"30px",height:"30px",marginLeft:"30px"}}
+                                 />
+                                <div className="vote">
+                                    {dataSeries.vote_average}/10
+                                </div>
+                                <img 
+                                    src="/images/imdblogo.jpg"
+                                    style={{width:"60px",height:"20px",borderRadius:"4px",marginRight:"2px"}}
+                                 />
+                            </Flex>
                             <Flex className="description" wrap justify="flex-start" gap="middle" align="center">
                                 <img className="poster" 
                                     src={`https://image.tmdb.org/t/p/w500${dataSeries.poster_path}`}

@@ -8,7 +8,7 @@ import Style from "./style";
 import { Flex } from "antd";
 import { Link } from "react-router-dom";
 import { defaultTheme } from "../../style/globalStyle";
-import DoubleCircleIcon from "../helpers/circle";
+import DoubleCircleIcon from "../helpers/circleMakerForHeroSection";
 
 export default function HeroSection() {
     const [airingToday, setAiringToday] = useState({ results: [] });

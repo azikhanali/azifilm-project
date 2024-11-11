@@ -38,10 +38,9 @@ export default function Header() {
                             <Link onClick={clear} to={`/dataSeries/${item.id}`}>
                                 <img
                                     src={`https://image.tmdb.org/t/p/w45${item.poster_path}`}
-                                    alt={item.name || item.title}
                                     style={{ width: 100, height: 150, marginRight: 8 }}
                                 />
-                                <h3 style={{color:defaultTheme.colors.orange}}>{item.name || item.title}</h3>
+                                <h3 style={{color:defaultTheme.colors.orange}}>{item.name}</h3>
                             </Link>
                         </div>
                     ),
@@ -50,8 +49,13 @@ export default function Header() {
             })
             .catch(error => console.error("Error fetching search results:", error));
     };
+    // const currentQuery = searchParams.get("query") || "";
 
-    const handleSearchClick = () => setShowSearch(!showSearch);
+    const handleSearchClick = () => {
+        setShowSearch(!showSearch)
+        setSearchResults([]);
+        setSearchParams("");
+        };
 
     return (
         <Style sticky={sticky}>
@@ -97,6 +101,7 @@ export default function Header() {
                                             allowClear
                                         >
                                             <Input
+                                                
                                                 onChange={searchHandle}
                                                 style={{
                                                     backgroundColor: defaultTheme.colors.black,

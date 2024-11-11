@@ -42,7 +42,6 @@ export default function MovieNowPlaying() {
                         <div  className="genre" >
                         {genre_ids.map(function(genreId){ 
                             return(
-                            
                                 <h6 key={genreId}>
                                     {genres[genreId] ? genres[genreId] : "..."}
                                 </h6>

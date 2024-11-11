@@ -19,6 +19,11 @@ const Style = styled.div`
                 opacity: .7;
                 mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
             }
+            .name{
+                position:absolute;
+                left:1%;
+                top:30%;
+            }
             .description{
                 .poster{
                     margin-top: 150px;
