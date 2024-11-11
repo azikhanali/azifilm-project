@@ -4,12 +4,20 @@ const Style = styled.div`
     .tvSeries{
         .container{
             margin: 0 auto;
-            width: 1600px;
+            max-width: 1600px;
             padding: 0 15px;
             width: 95%;
             .title{
                 width:100%;
-                margin-bottom:15px;
+                margin-bottom:25px;
+                h4,h5{
+                    color: ${defaultTheme.colors.grey}
+                }
+                img{
+                    width:30px;
+                    height:30px;
+                    margin-left:5px;
+                }
             }
             img{
                 width:100%;
@@ -18,7 +26,6 @@ const Style = styled.div`
                 object-fit:cover;
             }
             .seasonEpisodeNumber{
-                transform: translateX( -50% );
                 margin-top: -25px;
                 width: 138px;
                 height: 30px;
@@ -40,18 +47,15 @@ const Style = styled.div`
                     height: 20px;
                     padding:0 5px;
                     margin-left: 5px;
-                    margin-top: 5px;
-                    
+                    margin-top: 5px;    
                 }
-
             }
             .name{
-                transform: translateX( -55% );
                 width: 138px;
                 height: 30px;
                 margin: 5px 10px;
+                text-align: center;
             }
         }
-    }
 `
 export default Style;

@@ -33,11 +33,11 @@ export default function TvSeriesOTheAir() {
             const seriesDetail = tvSeriesDetails[index]; 
 
             return (
-                <Col span={6} key={id}>
+                <Col xs={12} sm={12} md={6} lg={6} key={id}>
                     <Link to={`/dataSeries/${id}`}>
                         <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} />
-                        <Flex className="tvData" vertical>
-                            <Flex className="seasonEpisodeNumber" wrap justify="space-between">
+                        <Flex className="tvData" vertical align="center">
+                            <Flex className="seasonEpisodeNumber" wrap justify="space-between" align="center">
                                 <h6 className="episodeNumber">قسمت:
                                     {seriesDetail ? seriesDetail.last_episode_to_air.episode_number :( "منتظر باشید")}
                                 </h6>
@@ -60,7 +60,10 @@ export default function TvSeriesOTheAir() {
             <div className="tvSeries">
                 <div className="container">
                     <Flex className="title" justify="space-between">
-                        <h4>سریال های در حال پخش</h4>
+                        <Flex align="center" justify="flex-start">
+                            <img src="/images/tvlogo.png"/>
+                            <h4>سریال های در حال پخش</h4>
+                        </Flex>
                         <Link to="/series">
                             <Flex gap="small">
                                 <h5>تمامی سریالها</h5>
@@ -68,7 +71,7 @@ export default function TvSeriesOTheAir() {
                             </Flex>
                         </Link>
                     </Flex>
-                    <Row gutter={[8, 24]}>
+                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         {renderTvs()}
                     </Row>
                 </div>

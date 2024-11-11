@@ -4,6 +4,7 @@ import axios from "axios";
 import {Link,useSearchParams,createSearchParams} from "react-router-dom";
 import TvSeriesOTheAir from "../../components/tvSeriesOnTheAir";
 import HeroSection from "../../components/heroSection";
+import MovieNowPlaying from "../../components/movieNowPlaying";
 
 
 export default function HomePage(){
@@ -11,6 +12,7 @@ export default function HomePage(){
         <LayOut>
             <HeroSection/>
             <TvSeriesOTheAir/>
+            <MovieNowPlaying/>
         </LayOut>
 
     )

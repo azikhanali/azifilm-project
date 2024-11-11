@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react"; 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { Fragment, useEffect, useState } from "react"; 
 import api from "../helpers/baseUrl";
 import { apiKey } from "../helpers/token";
 import Style from "./style";
 import { Flex } from "antd";
 import { Link } from "react-router-dom";
+import { defaultTheme } from "../../style/globalStyle";
+import DoubleCircleIcon from "../helpers/circle";
 
 export default function HeroSection() {
     const [airingToday, setAiringToday] = useState({ results: [] });
@@ -29,33 +34,81 @@ export default function HeroSection() {
     function renderCurrentImage() {
         if (currentImage){
             return (
-                <img className="bgHero" src={`https://image.tmdb.org/t/p/w500${currentImage.backdrop_path}`}  />
+                <Fragment>
+                    <img className="bgHero"
+                        src={`https://image.tmdb.org/t/p/w500${currentImage.backdrop_path}`} 
+                    />                    
+                    <div className="heroImage">
+                        <Flex justify="space-between" align="center">
+                            <Link>
+                               <DoubleCircleIcon/>
+                            </Link>
+                            <Flex className="name" vertical align="flex-end" justify="center">
+                                <h2>
+                                    {currentImage.name}
+                                </h2>
+                                <img src="/images/imdblogo.jpg"/>
+                                <div className="vote">
+                                    {currentImage.vote_average}/10
+                                </div>
+                            </Flex>
+                        </Flex>
+                    </div>
+                </Fragment>
             );
         }
     }
     
       function renderAirToday() {
             if (currentImage){
-                return (
-                    <Link to={`/dataSeries/${currentImage.id}`} className="slide" >
-                    <img
-                        className="imageSlide"
-                        src={`https://image.tmdb.org/t/p/w500${currentImage.poster_path}`}
-                    />
-                    </Link>
-                ); 
+                return airingToday.results.slice(0,5).map(function({id,poster_path}){
+                    return (
+                        <Link to={`/dataSeries/${id}`} className="slide" >
+                        <img
+                            className="imageSlide"
+                            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                        />
+                        </Link>
+                    ); 
+                })
             }   
         }
-
+        const settings = {
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            speed: 4000,
+            autoplaySpeed: 4000,
+            cssEase: "linear",
+            responsive: [
+              {
+                breakpoint: 992, 
+                settings: {
+                  slidesToShow: 3, 
+                  slidesToScroll: 1,
+                },
+              },
+              {
+                breakpoint: 768, 
+                settings: {
+                  slidesToShow: 1, 
+                  slidesToScroll: 1,
+                },
+              },
+            ],
+          };
+          
     return (
         <Style>
             <div className="heroSection">
                 {renderCurrentImage()}
-                <div className="slideHero">
-                    <Flex className="container" wrap justify="space-between" align="center"  >
+                <div className="slider-container">
+                <Slider {...settings}>
                         {renderAirToday()}
-                        <div className="leftSide"></div>        
-                    </Flex>
+                </Slider>
+
                 </div>
             </div>
         </Style>

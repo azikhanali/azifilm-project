@@ -3,7 +3,7 @@ import api from "../../helpers/baseUrl";
 import { apiKey } from "../../helpers/token";
 import { Flex, AutoComplete, Input } from "antd"; 
 import { Link, useSearchParams, createSearchParams } from "react-router-dom";
-import { SearchOutlined , MenuOutlined } from "@ant-design/icons"; 
+import { SearchOutlined } from "@ant-design/icons"; 
 import { defaultTheme } from "../../../style/globalStyle";
 import Style from "./style";
 
@@ -24,24 +24,20 @@ export default function Header() {
     const searchHandle = (event) => {
         const query = event.target.value;
         setSearchParams(createSearchParams({ query }));
-    function clear(){
-        setSearchResults([]);
-        setSearchParams("");
-    }
 
         api.get(`/search/multi?api_key=${apiKey}&query=${query}`)
             .then(response => {
                 const options = response.data.results.map(item => ({
                     value: item.id,
                     label: (
-                        <div style={{ display: "flex", alignItems: "center", flexWrap:"wrap"}}>
-                            <Link onClick={clear} to={`/dataSeries/${item.id}`}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <Link to={`/dataSeries/${item.id}`}>
                                 <img
                                     src={`https://image.tmdb.org/t/p/w45${item.poster_path}`}
                                     alt={item.name || item.title}
-                                    style={{ width: 100, height: 150, marginRight: 8 }}
+                                    style={{ width: 30, height: 45, marginRight: 8 }}
                                 />
-                                <h3 style={{color:defaultTheme.colors.orange}}>{item.name || item.title}</h3>
+                                <span>{item.name || item.title}</span>
                             </Link>
                         </div>
                     ),
@@ -56,39 +52,47 @@ export default function Header() {
     return (
         <Style sticky={sticky}>
             <div className="header">
-                <Flex className="container" wrap justify="space-between" align="center">
-                    <Flex className="menue" wrap justify="felex-start" align="center" gap="small">
-                        <MenuOutlined  className="hamburgerMenue"/>
-                        <div className="logo">
-                            <Link to="/">
-                                <img src="/images/zarfilm-logo-white.png"/>
-                            </Link>
-                        </div>
-                        <div className="headerLink">
-                            <Flex wrap="wrap" justify="space-between" gap="small">
-                                <Link to="/">دسته بندی ها</Link>
-                                <Link to="/">هنرمندان</Link>
-                                <Link to="/">پخش آنلاین</Link>
-                                <Link to="/">خرید اشتراک</Link>
-                                <Link to="/">اپلیکیشن</Link>
-                            </Flex>
-                        </div>
-                    </Flex>
+                <Flex className="container" wrap="wrap" justify="start">
+                    <div className="logo">
+                        <Link to="/">
+                            <img src="/images/zarfilm-logo-white.png" alt="logo" />
+                        </Link>
+                    </div>
+                    <div className="headerLink">
+                        <Flex wrap="wrap" justify="space-between" gap="middle">
+                            <Link to="/">دسته بندی ها</Link>
+                            <Link to="/">هنرمندان</Link>
+                            <Link to="/">پخش آنلاین</Link>
+                            <Link to="/">خرید اشتراک</Link>
+                            <Link to="/">اپلیکیشن</Link>
+                        </Flex>
+                    </div>
                     <div className="user">
                         <Flex wrap="wrap" justify="space-between" gap="middle" align="center">
-                            <Flex className="search"  justify="flex-start" align="center">
-                                <SearchOutlined onClick={handleSearchClick}
+                            <Flex className="search" onClick={handleSearchClick} justify="flex-start" align="center">
+                                <SearchOutlined 
                                     style={{
                                         color: defaultTheme.colors.white,
                                         fontSize: "18px",
-                                        marginLeft: "-25px",
-                                        // position: "absolute",
+                                        marginLeft: "10px",
+                                        position: "absolute",
                                         zIndex: "99",
                                         backgroundColor: defaultTheme.colors.black,
                                         borderRadius: "4px",
                                     }}
                                 />
                                 {showSearch && (
+                                    <Fragment>
+                                        <SearchOutlined 
+                                            style={{
+                                                color: defaultTheme.colors.orange,
+                                                fontSize: "18px",
+                                                marginLeft: "-10px",
+                                                position: "absolute",
+                                                zIndex: "99",
+                                                backgroundColor: defaultTheme.colors.black,
+                                            }}
+                                        />
                                         <AutoComplete
                                             style={{ width: 200, color: defaultTheme.colors.black }}
                                             options={searchResults}
@@ -102,13 +106,13 @@ export default function Header() {
                                                     backgroundColor: defaultTheme.colors.black,
                                                     color: defaultTheme.colors.white,
                                                     borderColor: defaultTheme.colors.orange,
-                                                    paddingRight:"40px",
                                                 }}
                                             />
                                         </AutoComplete>
+                                    </Fragment>
                                 )}
                             </Flex>
-                            <div className="logIn"><h4>ورود</h4></div>
+                            <div className="logIn">ورود</div>
                         </Flex>
                     </div>
                 </Flex>
